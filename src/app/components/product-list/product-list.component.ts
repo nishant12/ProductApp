@@ -4,10 +4,9 @@ import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-
   products: any;
   currentProduct = null;
   currentIndex = -1;
@@ -20,21 +19,14 @@ export class ProductListComponent implements OnInit {
   }
 
   readProducts(): void {
-    this.productService.readAll()
-      .subscribe(
-        products => {
-          this.products = products;
-          console.log(products);
-        },
-        error => {
-          console.log(error);
-        });
-  }
-
-  refresh(): void {
-    this.readProducts();
-    this.currentProduct = null;
-    this.currentIndex = -1;
+    this.productService.readAll().subscribe(
+      (products) => {
+        this.products = products;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   setCurrentProduct(product, index): void {
@@ -43,14 +35,13 @@ export class ProductListComponent implements OnInit {
   }
 
   searchByName(): void {
-    this.productService.searchByName(this.name)
-      .subscribe(
-        products => {
-          this.products = products;
-          console.log(products);
-        },
-        error => {
-          console.log(error);
-        });
+    this.productService.searchByName(this.name).subscribe(
+      (products) => {
+        this.products = products;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

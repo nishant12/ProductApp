@@ -1,16 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductCreateComponent } from './product-create.component';
+import { ProductService } from './../../services/product.service';
 
 describe('ProductCreateComponent', () => {
   let component: ProductCreateComponent;
   let fixture: ComponentFixture<ProductCreateComponent>;
 
-  beforeEach(async () => {
+  beforeEach(async () => {  
     await TestBed.configureTestingModule({
-      declarations: [ ProductCreateComponent ]
+      declarations: [ProductCreateComponent],
+      providers: [ProductService]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -20,6 +22,8 @@ describe('ProductCreateComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = TestBed.createComponent(ProductCreateComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
   });
 });

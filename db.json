@@ -3,16 +3,16 @@
     {
       "name": "Angular 101",
       "description": "Introduction to Angular 101",
-      "available": false,
+      "available": true,
       "id": 1,
       "price": 50
     },
     {
       "id": 2,
       "name": "Angular 201",
-      "description": "Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202",
+      "description": "Client and Server Communication Angular 201",
       "price": 200,
-      "available": false
+      "available": true
     }
   ]
 }

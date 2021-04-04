@@ -5,74 +5,70 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.css']
+  styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
-  message = '';
   currentProduct: any;
 
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    this.message = '';
     this.getProduct(this.route.snapshot.paramMap.get('id'));
   }
 
   getProduct(id): void {
-    this.productService.read(id)
-      .subscribe(
-        product => {
-          this.currentProduct = product;
-          console.log(product);
-        },
-        error => {
-          console.log(error);
-        });
+    this.productService.read(id).subscribe(
+      (product) => {
+        this.currentProduct = product;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   setAvailableStatus(status): void {
     const data = {
       name: this.currentProduct.name,
       description: this.currentProduct.description,
-      available: status
+      available: status,
     };
 
-    this.productService.update(this.currentProduct.id, data)
-      .subscribe(
-        response => {
-          this.currentProduct.available = status;
-          console.log(response);
-        },
-        error => {
-          console.log(error);
-        });
+    this.productService.update(this.currentProduct.id, data).subscribe(
+      (response) => {
+        this.currentProduct.available = status;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   updateProduct(): void {
-    this.productService.update(this.currentProduct.id, this.currentProduct)
+    this.productService
+      .update(this.currentProduct.id, this.currentProduct)
       .subscribe(
-        response => {
-          console.log(response);
-          this.message = 'The product was updated!';
+        (response) => {
           this.router.navigate(['/products']);
         },
-        error => {
+        (error) => {
           console.log(error);
-        });
+        }
+      );
   }
 
   deleteProduct(): void {
-    this.productService.delete(this.currentProduct.id)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.router.navigate(['/products']);
-        },
-        error => {
-          console.log(error);
-        });
+    this.productService.delete(this.currentProduct.id).subscribe(
+      (response) => {
+        this.router.navigate(['/products']);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

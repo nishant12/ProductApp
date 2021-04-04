@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Start JSON Server
 
 To Create a full fake REST API using json-server package. (https://www.npmjs.com/package/json-server)
-Run `npm server` to start the api. Navigate to `http://localhost:3000/`.
+Run `npm run server` to start the api. Navigate to `http://localhost:3000/`.
 
 ## Start Development server
 
