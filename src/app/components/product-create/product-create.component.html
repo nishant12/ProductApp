@@ -1,0 +1,45 @@
+<div>
+    <div class="submit-form">
+        <form #productForm="ngForm" *ngIf="!submitted">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" required [(ngModel)]="product.name" name="name"
+                    #name="ngModel" />
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                    Name is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" required [(ngModel)]="product.description"
+                    name="description" #description="ngModel"></textarea>
+                <div *ngIf="description.invalid && (description.dirty || description.touched)"
+                    class="alert alert-danger">
+                    Description is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" class="form-control" id="price" required [(ngModel)]="product.price" name="price"
+                    #price="ngModel" />
+                <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+                    Price is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="available">Available</label>
+                <input type="checkbox" class="checkboxClass" id="available" [(ngModel)]="product.available"
+                    name="available" />
+            </div>
+            <button (click)="createProduct()" [disabled]="!productForm.form.valid" class="btn btn-success">Create</button>
+        </form>
+
+        <div *ngIf="submitted">
+            <h3>You successfully created a product!</h3>
+            <button class="btn btn-success" (click)="newProduct()">New..</button>
+        </div>
+    </div>
+</div>

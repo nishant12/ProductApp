@@ -1,0 +1,18 @@
+{
+  "products": [
+    {
+      "name": "Angular 101",
+      "description": "Introduction to Angular 101",
+      "available": false,
+      "id": 1,
+      "price": 50
+    },
+    {
+      "id": 2,
+      "name": "Angular 201",
+      "description": "Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202Client and Server Communication Angular 2 Angular 202",
+      "price": 200,
+      "available": false
+    }
+  ]
+}

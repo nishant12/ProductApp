@@ -1,0 +1,59 @@
+<div>
+    <div *ngIf="currentProduct" class="edit-form">
+        <h4>Product</h4>
+        <form #currentProductForm="ngForm">
+            <div class="form-group">
+                <label for="title">Name</label>
+                <input type="text" class="form-control" id="name" [(ngModel)]="currentProduct.name" required name="name"
+                    #name="ngModel" />
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                    Name is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea type="text" class="form-control" id="description" required
+                    [(ngModel)]="currentProduct.description" name="description" #description="ngModel"></textarea>
+                <div *ngIf="description.invalid && (description.dirty || description.touched)"
+                    class="alert alert-danger">
+                    Description is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" class="form-control" id="price" required [(ngModel)]="currentProduct.price"
+                    name="price" #price="ngModel" />
+                <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+                    Price is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Status:</label>
+                <span> {{currentProduct.available ? 'Available' : 'Not Available' }}</span>
+            </div>
+        </form>
+
+        <button class="badge badge-primary mr-2" *ngIf="currentProduct.available" (click)="setAvailableStatus(false)">
+            Set Not Available
+        </button>
+        <button *ngIf="!currentProduct.available" class="badge badge-primary mr-2" (click)="setAvailableStatus(true)">
+            Set Available
+        </button>
+
+        <button class="badge badge-danger mr-2" (click)="deleteProduct()">
+            Delete
+        </button>
+
+        <button type="submit" class="badge badge-success" [disabled]="!currentProductForm.form.valid"
+            (click)="updateProduct()">
+            Update
+        </button>
+        <p></p>
+    </div>
+
+    <div *ngIf="!currentProduct">
+        <br />
+        <p>This product is not accessible</p>
+    </div>
+</div>
