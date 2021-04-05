@@ -2,36 +2,36 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const baseURL = 'http://localhost:3000/products';
-
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+  
+  baseURL = 'http://localhost:3000/products';
 
   constructor(private httpClient: HttpClient) { }
 
-  readAll(): Observable<any> {
-    return this.httpClient.get(baseURL);
+  getAll(): Observable<any> {
+    return this.httpClient.get(this.baseURL);
   }
 
-  read(id): Observable<any> {
-    return this.httpClient.get(`${baseURL}/${id}`);
+  get(id): Observable<any> {
+    return this.httpClient.get(`${this.baseURL}/${id}`);
   }
 
   create(data): Observable<any> {
-    return this.httpClient.post(baseURL, data);
+    return this.httpClient.post(this.baseURL, data);
   }
 
   update(id, data): Observable<any> {
-    return this.httpClient.put(`${baseURL}/${id}`, data);
+    return this.httpClient.put(`${this.baseURL}/${id}`, data);
   }
 
   delete(id): Observable<any> {
-    return this.httpClient.delete(`${baseURL}/${id}`);
+    return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
 
   searchByName(name): Observable<any> {
-    return this.httpClient.get(`${baseURL}?q=${name}`);
+    return this.httpClient.get(`${this.baseURL}?q=${name}`);
   }
 }

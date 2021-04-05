@@ -19,7 +19,7 @@ export class ProductListComponent implements OnInit {
   }
 
   readProducts(): void {
-    this.productService.readAll().subscribe(
+    this.productService.getAll().subscribe(
       (products) => {
         this.products = products;
       },
