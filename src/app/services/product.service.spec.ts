@@ -129,4 +129,80 @@ describe('ProductService', () => {
       req.event(expectedResponse);
     });
   });
+
+  describe('#create Product', () => {
+
+    it('should create a product', () => {
+
+      const createProduct = {
+        "name": "Vue JS",
+        "description": "Introduction to Vue JS",
+        "available": true,
+        "price": 50
+      };
+
+      productService.create(createProduct).subscribe(
+        data => expect(data).toEqual(createProduct, 'should return the product')
+      );
+
+      // productService should have made one request to POST product
+      const req = httpTestingController.expectOne(productService.baseURL);
+      expect(req.request.method).toEqual('POST');
+      expect(req.request.body).toEqual(createProduct);
+
+      // Expect server to return the product after POST
+      const expectedResponse = new HttpResponse(
+        { status: 200, statusText: 'OK', body: createProduct });
+      req.event(expectedResponse);
+    });
+  });
+
+  describe('#delete Product', () => {
+
+    it('should delete the product and return empty obj', () => {
+
+      const makeUrl = `${productService.baseURL}/1`;
+
+      productService.delete(1).subscribe(
+        data => expect(data).toEqual({}, 'should return the empty object')
+      );
+
+      // productService should have made one request to PUT products
+      const req = httpTestingController.expectOne(makeUrl);
+      expect(req.request.method).toEqual('DELETE');
+      req.flush({});
+    });
+  });
+
+  describe('#search Product', () => {
+    // Expecting the query form of URL so should not 404 when id not found
+
+    it('should get a product by search and return it', () => {
+
+      const products = [{
+        "name": "Angular 101",
+        "description": "Introduction to Angular 101",
+        "available": true,
+        "id": 1,
+        "price": 50
+      },
+      {
+        "id": 2,
+        "name": "Angular 201",
+        "description": "Client and Server Communication Angular 201",
+        "price": 200,
+        "available": true
+      }];
+      const makeUrl = `${productService.baseURL}?q=101`;
+
+      productService.searchByName('101').subscribe(
+        data => expect(data).toEqual(products[0], 'should return the product')
+      );
+
+      // productService should have made one request to PUT products
+      const req = httpTestingController.expectOne(makeUrl);
+      expect(req.request.method).toEqual('GET');
+      req.flush(products[0]);
+    });
+  });
 });
